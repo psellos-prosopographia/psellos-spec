@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://psellos.org/spec/schema/minimal.person-parent.v0.1.json",
+  "title": "Minimal Person + Parent Relationship Spec v0.1",
+  "description": "Smallest spec that validates people and a parent relationship, with a Psellos extension namespace stub.",
+  "type": "object",
+  "properties": {
+    "persons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "core.snap.v0.1.json#/$defs/Person"
+      }
+    },
+    "assertions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/ParentAssertion" }
+    },
+    "extensions": { "$ref": "#/$defs/ExtensionsStub" }
+  },
+  "required": ["persons", "assertions"],
+  "additionalProperties": false,
+  "$defs": {
+    "ParentAssertion": {
+      "allOf": [
+        { "$ref": "core.snap.v0.1.json#/$defs/Assertion" },
+        {
+          "type": "object",
+          "properties": {
+            "predicate": { "const": "parent_of" }
+          },
+          "required": ["object"]
+        }
+      ]
+    },
+    "ExtensionsStub": {
+      "type": "object",
+      "description": "Explicit namespace for Psellos extensions (optional).",
+      "properties": {
+        "psellos": {
+          "$ref": "extensions.psellos.v0.1.json"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
