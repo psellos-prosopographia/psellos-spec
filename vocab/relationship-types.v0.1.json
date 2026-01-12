@@ -1,0 +1,21 @@
+{
+  "vocab": "relationship_types",
+  "version": "0.1",
+  "values": [
+    {
+      "id": "related_to",
+      "label": "Related to",
+      "description": "General relationship placeholder when no specific predicate is available."
+    },
+    {
+      "id": "identified_as",
+      "label": "Identified as",
+      "description": "Assertion that a subject is identified with an entity or name."
+    },
+    {
+      "id": "mentioned_in",
+      "label": "Mentioned in",
+      "description": "Assertion that a subject is mentioned in a source."
+    }
+  ]
+}

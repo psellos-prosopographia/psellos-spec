@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://psellos.org/spec/schema/extensions.psellos.v0.1.json",
+  "title": "Psellos Extensions to SNAP-aligned Core v0.1",
+  "description": "Psellos-specific extension namespace for narrative, jurisdictional, and legal-context metadata.",
+  "type": "object",
+  "properties": {
+    "narrative_layers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/NarrativeLayer" }
+    },
+    "jurisdictions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Jurisdiction" }
+    },
+    "rights": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Right" }
+    },
+    "assertion_contexts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/AssertionContext" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "description": "Stable identifier within a dataset or external authority."
+    },
+    "NarrativeLayer": {
+      "type": "object",
+      "required": ["id", "code", "label"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "code": {
+          "type": "string",
+          "description": "Controlled value from vocab/narrative-layers.v0.1.json."
+        },
+        "label": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "Jurisdiction": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "label": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "Right": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "label": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "AssertionContext": {
+      "type": "object",
+      "required": ["assertion_id"],
+      "properties": {
+        "assertion_id": { "$ref": "#/$defs/Identifier" },
+        "narrative_layer_id": { "$ref": "#/$defs/Identifier" },
+        "jurisdiction_id": { "$ref": "#/$defs/Identifier" },
+        "legal_status": {
+          "type": "string",
+          "enum": ["de_facto", "de_jure"],
+          "description": "Indicates whether the assertion is treated as de facto or de jure."
+        },
+        "right_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Identifier" }
+        },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

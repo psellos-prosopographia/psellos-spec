@@ -1,0 +1,16 @@
+{
+  "vocab": "narrative_layers",
+  "version": "0.1",
+  "values": [
+    {
+      "id": "source_reported",
+      "label": "Source-reported",
+      "description": "The layer that records what sources explicitly state."
+    },
+    {
+      "id": "scholarly_interpretation",
+      "label": "Scholarly interpretation",
+      "description": "The layer used for analytical or interpretive statements."
+    }
+  ]
+}

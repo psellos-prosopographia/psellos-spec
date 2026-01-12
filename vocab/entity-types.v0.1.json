@@ -1,0 +1,16 @@
+{
+  "vocab": "entity_types",
+  "version": "0.1",
+  "values": [
+    {
+      "id": "person",
+      "label": "Person",
+      "description": "An individual human being."
+    },
+    {
+      "id": "collective",
+      "label": "Collective",
+      "description": "A group or collective entity when treated as a person-like actor."
+    }
+  ]
+}

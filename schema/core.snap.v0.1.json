@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://psellos.org/spec/schema/core.snap.v0.1.json",
+  "title": "SNAP-aligned Core Prosopographical Schema v0.1",
+  "description": "Core contracts for persons, assertions, sources, and time ranges.",
+  "type": "object",
+  "properties": {
+    "persons": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Person" }
+    },
+    "assertions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Assertion" }
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Source" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "description": "Stable identifier within a dataset or external authority."
+    },
+    "Person": {
+      "type": "object",
+      "required": ["id", "label", "entity_type"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "label": {
+          "type": "string",
+          "description": "Human-readable name or label."
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "Controlled value from vocab/entity-types.v0.1.json."
+        },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "Assertion": {
+      "type": "object",
+      "required": ["id", "subject", "predicate"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "subject": { "$ref": "#/$defs/EntityReference" },
+        "predicate": {
+          "type": "string",
+          "description": "Controlled value from vocab/relationship-types.v0.1.json."
+        },
+        "object": { "$ref": "#/$defs/EntityReference" },
+        "value": {
+          "type": ["string", "number", "boolean", "null"],
+          "description": "Literal value when the assertion does not point to an entity."
+        },
+        "source": { "$ref": "#/$defs/SourceReference" },
+        "time_range": { "$ref": "#/$defs/TimeRange" },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "description": "Either object or value should be supplied when applicable.",
+          "anyOf": [
+            { "required": ["object"] },
+            { "required": ["value"] }
+          ]
+        }
+      ]
+    },
+    "EntityReference": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "label": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "Source": {
+      "type": "object",
+      "required": ["id", "title"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "title": { "type": "string" },
+        "citation": { "type": "string" },
+        "uri": { "type": "string", "format": "uri" },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "SourceReference": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "citation": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "TimeRange": {
+      "type": "object",
+      "properties": {
+        "start": { "$ref": "#/$defs/TemporalInstant" },
+        "end": { "$ref": "#/$defs/TemporalInstant" },
+        "label": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "TemporalInstant": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "ISO 8601 or other agreed temporal string."
+        },
+        "precision": {
+          "type": "string",
+          "description": "Granularity of the temporal value, e.g., year, month, day."
+        }
+      },
+      "required": ["value"],
+      "additionalProperties": false
+    }
+  }
+}
