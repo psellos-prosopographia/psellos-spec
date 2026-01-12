@@ -11,11 +11,17 @@ relationships, sources, and temporal scope, without prescribing any application 
 These contracts are intended to support consistent data exchange and validation across future
 Psellos tooling.
 
+## Project Context
+
+The broader Psellos initiative is coordinated in the `psellos-hub` repository, while this
+repository is the upstream authority for the canonical schemas, vocabularies, and specification
+text that other implementations must follow.
+
 ## Relationship to SNAP:DRGN
 
 The core schemas align conceptually with SNAP:DRGN by modeling people as entities, statements as
-assertions grounded in sources, and temporal information as explicit ranges. The project remains
-JSON-first and does not require RDF/OWL serialization at this stage.
+assertions grounded in sources, and temporal information as explicit ranges. RDF/OWL compatibility
+is conceptual only and not required at this stage.
 
 ## Core vs. Extension Philosophy
 
