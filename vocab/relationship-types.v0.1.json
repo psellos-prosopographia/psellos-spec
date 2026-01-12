@@ -8,6 +8,11 @@
       "description": "General relationship placeholder when no specific predicate is available."
     },
     {
+      "id": "parent_of",
+      "label": "Parent of",
+      "description": "Assertion that the subject is a parent of the object."
+    },
+    {
       "id": "identified_as",
       "label": "Identified as",
       "description": "Assertion that a subject is identified with an entity or name."
