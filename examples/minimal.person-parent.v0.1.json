@@ -1,0 +1,25 @@
+{
+  "persons": [
+    {
+      "id": "person:001",
+      "label": "Alexios",
+      "entity_type": "person"
+    },
+    {
+      "id": "person:002",
+      "label": "Maria",
+      "entity_type": "person"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "assertion:001",
+      "subject": { "id": "person:001" },
+      "predicate": "parent_of",
+      "object": { "id": "person:002" }
+    }
+  ],
+  "extensions": {
+    "psellos": {}
+  }
+}
