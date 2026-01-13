@@ -19,13 +19,16 @@ text that other implementations must follow.
 
 ## v0.1.0 Minimal Spec
 
-v0.1.0 includes:
+v0.1.0 defines the **minimum required** compliance level. It includes:
 - a `persons` array of core person entities
 - an `assertions` array of relationships
 - the `parent_of` predicate
 - an explicit `extensions` namespace stub for Psellos
 
-v0.1.0 does not include yet:
+The extension schemas are **defined but optional / inactive by default** for v0.1.0 compliance.
+They may be present without being required by the minimal schema.
+
+v0.1.0 does not require:
 - events or event modeling
 - places or geographic modeling
 - disputes or conflicting assertions
